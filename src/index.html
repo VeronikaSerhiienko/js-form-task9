@@ -12,7 +12,7 @@
         <legend class="form-block__legend-title">contact</legend>
         <div class="form-block__group">
           <label for="form-name" class="form-block__field-label">name</label>
-          <input type="text" class="form-block__field js-input" id="form-name" name="Name" required data-validation-rules="required minlength word" minlength="2" placeholder="Andrew">
+          <input type="text" class="form-block__field js-input" id="form-name" name="Name" required data-validation-rules="required minlength letter" minlength="2" placeholder="Andrew">
         </div>
         <div class="form-block__group">
           <label for="form-email" class="form-block__field-label">email</label>
@@ -43,11 +43,11 @@
         </div>
         <div class="form-block__group">
           <label for="form-city" class="form-block__field-label">city</label>
-          <input type="text" class="form-block__field js-input" id="form-city" name="City" data-validation-rules="minlength word" minlength="2" placeholder="Chicago">
+          <input type="text" class="form-block__field js-input" id="form-city" name="City" data-validation-rules="minlength letter" minlength="2" placeholder="Chicago">
         </div>
         <div class="form-block__group">
           <label for="form-state" class="form-block__field-label">state</label>
-          <input type="text" class="form-block__field js-input" id="form-state" name="State" data-validation-rules="minlength word" minlength="2" placeholder="Illinois">
+          <input type="text" class="form-block__field js-input" id="form-state" name="State" data-validation-rules="minlength letter" minlength="2" placeholder="Illinois">
         </div>
         <div class="form-block__group">
           <label for="form-zip" class="form-block__field-label">zip</label>
@@ -55,7 +55,7 @@
         </div>
         <div class="form-block__group">
           <label for="form-country" class="form-block__field-label">country</label>
-          <input type="text" class="form-block__field js-input" id="form-country" name="Country" data-validation-rules="minlength word" minlength="2" placeholder="USA">
+          <input type="text" class="form-block__field js-input" id="form-country" name="Country" data-validation-rules="minlength letter" minlength="2" placeholder="USA">
         </div>
         <div class="form-block__group form-block__group--row">
           <input type="checkbox" name="Bill" value="createBill" class="js-input" data-validation-rules="" checked>Bill to this address</div>
@@ -66,7 +66,7 @@
         <p class="form-block__tip">Do <span class="form-block__tip-bold">not</span> provide real credit card information in this field.</p>
         <div class="form-block__group">
           <label for="form-name-on-card" class="form-block__field-label">name on card</label>
-          <input type="text" name="nameOnCard" class="form-block__field js-input" id="form-name-on-card" placeholder="Andrew Sunday" required data-validation-rules="word required">
+          <input type="text" name="nameOnCard" class="form-block__field js-input" id="form-name-on-card" placeholder="Andrew Sunday" required data-validation-rules="letter required">
         </div>
         <div class="form-block__group">
           <label for="form-card-number" class="form-block__field-label">credit card number</label>

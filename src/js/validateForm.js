@@ -26,7 +26,7 @@ window.onload = function() {
       event.preventDefault();
       //loaderFunc();  
       setTimeout(function(){
-        validateForm(item) ;
+        console.log('resultOfForm ' + validateForm(item));
       },2000);
    });
   });
@@ -139,7 +139,7 @@ window.onload = function() {
         if (!addressIn.value.match(homeAddressRe)) {
           resetError(addressIn.parentElement);
           showError(addressIn.parentElement, 'Please, enter valid home address. It should be like 01, Sunday St.');
-            return false;
+          return false;
         }
       } 
     return true;
@@ -152,6 +152,8 @@ window.onload = function() {
         resetError(phoneIn.parentElement);
         showError(phoneIn.parentElement, 'Please, enter valid phone number');
         return false;
+      } else {
+        return true;
       }
     } 
     return true;
@@ -186,18 +188,18 @@ window.onload = function() {
       if (!input.value.match(digitsRe)) {
         resetError(input.parentElement);
         showError(input.parentElement, 'Please, enter valid data. Only digits');
-          return false;
+        return false;
       }
     } 
     return true;
   }
 
   function checkPassword(passwordIn) {
-    var passwordRe = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+    var passwordRe = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     if (passwordIn.value.length) {
       if (!passwordIn.value.match(passwordRe)) {
         resetError(passwordIn.parentElement);
-        showError(passwordIn.parentElement, 'Please, enter valid password. At least one digit, at least one lowercase character and at least one uppercase character');
+        showError(passwordIn.parentElement, 'Please, enter valid password. At least one digit and one lowercase character and one uppercase character and special character');
         return false;
       }
     } 
@@ -224,6 +226,7 @@ window.onload = function() {
     var nowDate = new Date();
     var month = nowDate.getMonth() + 1;
     var year = nowDate.getFullYear() % 2000;
+
     if (expiryIn.value.length) {
       if (expiryIn.value.length !== 5) {
         resetError(expiryIn.parentElement);
@@ -238,58 +241,83 @@ window.onload = function() {
   }
 
   function validateForm(currentForm) {
+    var isFormValid = true;
     var inputs = currentForm.querySelectorAll('.js-input');
     inputs.forEach(function(item) {
       var rules = item.getAttribute('data-validation-rules');
       if (rules.indexOf('required') != -1) {
-        checkRequired(item);
+        if (!checkRequired(item)) {
+          isFormValid = false;
+        }
       }
 
       if (rules.indexOf('minlength') != -1) {
-        checkMinLength(item);
+        if (!checkMinLength(item)) {
+          isFormValid = false;
+        }
       }
 
       if (rules.indexOf('maxlength') != -1) {
-        checkMaxLength(item);
+        if (!checkMaxLength(item)) {
+          isFormValid = false;
+        }
       }
 
-      if (rules.indexOf('word') != -1) {
-        checkWord(item);
+      if (rules.indexOf('letter') != -1) {
+        if (!checkWord(item)) {
+          isFormValid = false;
+        }
       }
 
       if (rules.indexOf('digits') != -1) {
-        checkDigits(item);
+        if (!checkDigits(item)) {
+          isFormValid = false;
+        }
       }
 
       if (rules.indexOf('homeAddress') != -1) {
-        checkHomeAddress(item);
+        if (!checkHomeAddress(item)) {
+          isFormValid = false;
+        }
       }
 
       if (rules.indexOf('email') != -1) {
-        checkEmail(item);
+        if (!checkEmail(item)) {
+          isFormValid = false;
+        }
       }
 
       if (rules.indexOf('password') != -1) {
-        checkPassword(item);
+        if (!checkPassword(item)) {
+          isFormValid = false;
+        }
       }
 
       if (rules.indexOf('phone') != -1) {
-        checkPhone(item);
+        if (!checkPhone(item)) {
+          isFormValid = false;
+        }
       }
 
       if (rules.indexOf('creditCardNumber') != -1) {
-        checkCreditCardNumber(item);
+        if (!checkCreditCardNumber(item)) {
+          isFormValid = false;
+        }
       }
 
       if (rules.indexOf('expiry') != -1) {
-        checkExpiry(item);
+        if (!checkExpiry(item)) {
+          isFormValid = false;
+        }
       }
 
-
       if (rules.indexOf('confirm') != -1) {
-        checkConfirmFields(item, currentForm);
+        if (!checkConfirmFields(item, currentForm)) {
+          isFormValid = false;
+        }
       }
 
     });
+    return isFormValid;
   }
 };
