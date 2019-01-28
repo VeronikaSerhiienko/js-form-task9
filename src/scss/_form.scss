@@ -1,0 +1,105 @@
+.form-block {
+  margin: 0 auto;
+  width: 90%;
+  padding: 50px 10px;
+  border-radius: 6px;
+  box-shadow: 0 0 6px 3px rgba(0,0,0,.75);
+  background-color: #f7f7f7;
+
+  @media screen and (min-width: 600px) {
+    padding: 50px;
+    width: 540px;
+  }
+
+  &__wrapper {
+    margin-bottom: 50px;
+    padding: 10px;
+  }
+
+  &__field-label {
+    text-transform: capitalize;
+    &--uppercase {
+      text-transform: uppercase;
+    }
+  }
+
+  &__group {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+
+    &--row {
+      flex-direction: row;
+    }
+  }
+
+  &__icon {
+    display: block;
+    margin-bottom: 20px;
+    width: 26px;
+    height: 26px;
+  }
+
+  &__field {  
+    padding: 5px 15px;
+    border-radius: 6px;
+    font-size: 18px;
+    background-color: #f7f7f7;
+    border: 1px solid #b0c4de;
+  }
+
+  &__field-label {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  &__tip {
+    padding-left: 10px;
+    margin-bottom: 20px;
+  }
+
+  &__tip-bold {
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  &__legend-title {
+    text-transform: capitalize;
+    font-size: 20px;
+  }
+
+  &__button-wrapper {
+    display: flex;
+    flex-direction: column;
+
+    @media screen and (min-width: 600px) {
+      justify-content: center;
+      flex-direction: row;
+    }
+  }
+
+  &__button-item {
+    margin-bottom: 20px;
+
+    @media screen and (min-width: 600px) {
+      margin-bottom: 0;
+      margin-right: 20px;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+
+      @media screen and (min-width: 600px) {
+        margin-right: 0;
+      }
+    };
+  }
+}
+
+.error-message {
+  color: tomato;
+}
+.error .form__field {
+  border: 1px solid tomato;
+  border-radius: 6px;
+}

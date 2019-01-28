@@ -1,0 +1,32 @@
+.form-button {
+  background-color: transparent;
+  border-radius: 6px;
+  padding: 10px 25px;
+  border: 5px dashed turquoise;
+  color: turquoise;
+  font-size: 20px;
+  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.75);
+  background-image: linear-gradient(#00e5e5, #00e5e5);
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+  transition: background-size 0.5s;
+  cursor: pointer;
+
+  &:hover {
+    background-size: 100% 100%;
+    color: green;
+    border-style: inset;
+  };
+
+  &--red {
+    text-transform: uppercase;
+    border-color: salmon;
+    color: salmon;
+    background-image: linear-gradient(tomato, tomato);
+    
+    &:hover {
+      color: maroon;
+    };
+  }
+} 

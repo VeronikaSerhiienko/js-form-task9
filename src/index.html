@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Form-Validation</title>
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body>
+    <form action="#" method="post" class="js-form form-block" novalidate>
+      <fieldset class="form-block__wrapper">
+        <legend class="form-block__legend-title">contact</legend>
+        <div class="form-block__group">
+          <label for="form-name" class="form-block__field-label">name</label>
+          <input type="text" class="form-block__field js-input" id="form-name" name="Name" required data-validation-rules="required minlength word" minlength="2" placeholder="Andrew">
+        </div>
+        <div class="form-block__group">
+          <label for="form-email" class="form-block__field-label">email</label>
+          <input type="email" class="form-block__field js-input" id="form-email" name="Email" placeholder="name@example.com" required data-validation-rules="required email">
+        </div>
+        <div class="form-block__group">
+          <label for="form-confirm-email" class="form-block__field-label">confirm email</label>
+          <input type="email" class="form-block__field js-input" id="form-confirm-email" name="Confirm Email" required data-validation-rules="required confirm" data-confirm-field-id="form-email" placeholder="name@example.com">
+        </div>
+        <div class="form-block__group">
+          <label for="form-password" class="form-block__field-label">password</label>
+          <input type="password" class="form-block__field js-input" id="form-password" name="Password" required data-validation-rules="required minlength password" minlength="8">
+        </div>
+        <div class="form-block__group">
+          <label for="form-confirm-password" class="form-block__field-label">confirm password</label>
+          <input type="password" class="form-block__field js-input" id="form-confirm-password" name="Confirm Password" data-validation-rules="required confirm" data-confirm-field-id="form-password" required>
+        </div>
+        <div class="form-block__group">
+          <label for="form-phone" class="form-block__field-label">phone</label>
+          <input type="tel" class="form-block__field js-input" id="form-phone" name="Phone" required data-validation-rules="required minlength maxlength phone" minlength="10" maxlength="15"placeholder="0000000000">
+        </div>
+      </fieldset>
+      <fieldset class="form-block__wrapper">
+         <legend class="form-block__legend-title">shipping</legend>
+         <div class="form-block__group">
+          <label for="form-address" class="form-block__field-label">address</label>
+          <input type="text" class="form-block__field js-input" id="form-address" name="Address" data-validation-rules="homeAddress" placeholder="00, Sunday St.">
+        </div>
+        <div class="form-block__group">
+          <label for="form-city" class="form-block__field-label">city</label>
+          <input type="text" class="form-block__field js-input" id="form-city" name="City" data-validation-rules="minlength word" minlength="2" placeholder="Chicago">
+        </div>
+        <div class="form-block__group">
+          <label for="form-state" class="form-block__field-label">state</label>
+          <input type="text" class="form-block__field js-input" id="form-state" name="State" data-validation-rules="minlength word" minlength="2" placeholder="Illinois">
+        </div>
+        <div class="form-block__group">
+          <label for="form-zip" class="form-block__field-label">zip</label>
+          <input type="text" class="form-block__field js-input" id="form-zip" name="Zip" data-validation-rules="minlength digits" minlength="5" placeholder="00000">
+        </div>
+        <div class="form-block__group">
+          <label for="form-country" class="form-block__field-label">country</label>
+          <input type="text" class="form-block__field js-input" id="form-country" name="Country" data-validation-rules="minlength word" minlength="2" placeholder="USA">
+        </div>
+        <div class="form-block__group form-block__group--row">
+          <input type="checkbox" name="Bill" value="createBill" class="js-input" data-validation-rules="" checked>Bill to this address</div>
+      </fieldset>
+      <fieldset class="form-block__wrapper">
+        <legend class="form-block__legend-title">payment</legend>
+        <img src="https://img.icons8.com/metro/26/000000/shopping-cart.png" class="form-block__icon">
+        <p class="form-block__tip">Do <span class="form-block__tip-bold">not</span> provide real credit card information in this field.</p>
+        <div class="form-block__group">
+          <label for="form-name-on-card" class="form-block__field-label">name on card</label>
+          <input type="text" name="nameOnCard" class="form-block__field js-input" id="form-name-on-card" placeholder="Andrew Sunday" required data-validation-rules="word required">
+        </div>
+        <div class="form-block__group">
+          <label for="form-card-number" class="form-block__field-label">credit card number</label>
+          <input type="tel" name="cardNumber" class="form-block__field js-input js-credit-card-number" id="form-card-number" placeholder="0000 0000 0000 0000" required data-validation-rules="creditCardNumber required">
+        </div>
+        <div class="form-block__group">
+          <label or="form-cvc" class="form-block__field-label form-block__field-label--uppercase">cvc</label>
+          <input type="tel" name="cardNumber" class="form-block__field js-input" id="form-cvc" placeholder="0000" required data-validation-rules="required minlength maxlength digits" minlength="3" maxlength="4">
+        </div>
+        <div class="form-block__group">
+          <label or="form-expiry" class="form-block__field-label">expiry</label>
+          <input type="tel" name="expiry" class="form-block__field js-input js-expiry" id="form-expiry" placeholder="02/19" required data-validation-rules="required expiry">
+        </div>
+      </fieldset>
+      <div class="form-block__button-wrapper">
+        <button type="reset" class="form-block__button-item form-button form-button--red">cancel</button>
+        <input type="submit" class="form-block__button-item form-button" value="CHECK OUT">
+      </div>
+    </div>
+  </form>
+  <div class="loader-wrapper">
+    <div class="loader"></div>
+  </div>
+
+
+  <script src="js/index.js"></script>
+  <script src="js/validateForm.js"></script>
+</body>
+</html>
