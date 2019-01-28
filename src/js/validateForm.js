@@ -21,26 +21,26 @@ window.onload = function() {
   }
 
   var forms = document.querySelectorAll('.js-form');
-    forms.forEach(function(item) {
+  forms.forEach(function(item) {
     item.addEventListener('submit', function(event) {
       event.preventDefault();
-      //loaderFunc();  
-      setTimeout(function(){
-        console.log('resultOfForm ' + validateForm(item));
-      },2000);
-   });
+      validateForm(item);
+    });
   });
 
-  function loaderFunc() {
-    var loader = document.querySelector(".loader");
-    var loaderWrapper = document.querySelector(".loader-wrapper");
+  function showLoader() {
+    var loader = document.querySelector('.loader');
+    var loaderWrapper = document.querySelector('.loader-wrapper');
     loader.classList.add('visible');
     loaderWrapper.classList.add('visible');
-    setTimeout(function(){
-      loader.classList.remove('visible');
-      loaderWrapper.classList.remove('visible');
-    },2000);
-  }  
+  }
+
+  function hideLoader() {
+    var loader = document.querySelector('.loader');
+    var loaderWrapper = document.querySelector('.loader-wrapper');
+    loader.classList.remove('visible');
+    loaderWrapper.classList.remove('visible');
+  } 
 
   function cc_format(value) {
     var v = value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
@@ -93,6 +93,9 @@ window.onload = function() {
       resetError(input.parentElement);
       showError(input.parentElement, 'This field is required. Please, fill in this field');
       return false;
+    } else {
+      resetError(input.parentElement);
+      return true;
     }
     return true;
   }
@@ -104,6 +107,9 @@ window.onload = function() {
         resetError(emailIn.parentElement);
         showError(emailIn.parentElement, 'Please, enter valid email');
         return false;
+      } else {
+        resetError(emailIn.parentElement);
+        return true;
       }
     } 
     return true;
@@ -116,6 +122,9 @@ window.onload = function() {
         resetError(input.parentElement);
         showError(input.parentElement, 'Please, enter valid data. Minimum ' + minLengthRe + ' symbols');
         return false;
+      } else {
+        resetError(input.parentElement);
+        return true;
       }
     } 
     return true;
@@ -128,6 +137,9 @@ window.onload = function() {
         resetError(input.parentElement);
         showError(input.parentElement, 'Please, enter valid data. Maximum ' + maxLengthRe + ' symbols');
         return false;
+      } else {
+        resetError(input.parentElement);
+        return true;
       }
     } 
     return true;
@@ -140,19 +152,23 @@ window.onload = function() {
           resetError(addressIn.parentElement);
           showError(addressIn.parentElement, 'Please, enter valid home address. It should be like 01, Sunday St.');
           return false;
+        } else {
+          resetError(addressIn.parentElement);
+          return true;
         }
       } 
     return true;
   }
 
   function checkPhone(phoneIn) {
-    var phoneRe = /^[\+]?\d+?[(]?\d{3}[)]?[-\s\.]?\d{3}[-\s\.]?\d{2}[-\s\.]?\d{2}$/im;
+    var phoneRe = /^[\+]?(\d+)?[(]?\d{3}[)]?[-\s\.]?\d{3}[-\s\.]?\d{2}[-\s\.]?\d{2}$/im;
     if (phoneIn.value.length) {
       if (!phoneIn.value.match(phoneRe)) {
         resetError(phoneIn.parentElement);
         showError(phoneIn.parentElement, 'Please, enter valid phone number');
         return false;
       } else {
+        resetError(phoneIn.parentElement);
         return true;
       }
     } 
@@ -160,11 +176,14 @@ window.onload = function() {
   }
 
   function checkCreditCardNumber(numberIn) {
-    if (numberIn.value.lehgth) {
+    if (numberIn.value.length) {
       if (numberIn.value.length !== 19) {
         resetError(numberIn.parentElement);
         showError(numberIn.parentElement, 'Please, enter valid number, 16 digits');
         return false;
+      } else {
+        resetError(numberIn.parentElement);
+        return true;
       }
     }
     return true; 
@@ -176,7 +195,10 @@ window.onload = function() {
       if (!input.value.match(wordRe)) {
         resetError(input.parentElement);
         showError(input.parentElement, 'Please, enter valid data. Only char symbols or/and -');
-          return false;
+        return false;
+      } else {
+        resetError(input.parentElement);
+        return true;
       }
     } 
     return true;
@@ -189,6 +211,9 @@ window.onload = function() {
         resetError(input.parentElement);
         showError(input.parentElement, 'Please, enter valid data. Only digits');
         return false;
+      } else {
+        resetError(input.parentElement);
+        return true;
       }
     } 
     return true;
@@ -201,6 +226,9 @@ window.onload = function() {
         resetError(passwordIn.parentElement);
         showError(passwordIn.parentElement, 'Please, enter valid password. At least one digit and one lowercase character and one uppercase character and special character');
         return false;
+      } else {
+        resetError(passwordIn.parentElement);
+        return true;
       }
     } 
     return true;
@@ -214,6 +242,9 @@ window.onload = function() {
         resetError(firstFieldIn.parentElement);
         showError(firstFieldIn.parentElement, 'Your fields do not match. Please, enter valid data.');
         return false;
+      } else {
+        resetError(firstFieldIn.parentElement);
+        return true;
       }
     } 
     return true;
@@ -235,89 +266,101 @@ window.onload = function() {
       } else if (monthIn < month && yearIn <= year) {
         showError(expiryIn.parentElement, 'Your expiration date is before today. Please, enter valid expiration date');
         return false;
+      } else {
+        resetError(expiryIn.parentElement);
+        return true;
       }
     }
     return true;
   }
 
   function validateForm(currentForm) {
+    showLoader();
     var isFormValid = true;
     var inputs = currentForm.querySelectorAll('.js-input');
     inputs.forEach(function(item) {
       var rules = item.getAttribute('data-validation-rules');
-      if (rules.indexOf('required') != -1) {
+      if (rules.indexOf('required') !== -1) {
         if (!checkRequired(item)) {
           isFormValid = false;
         }
       }
 
-      if (rules.indexOf('minlength') != -1) {
+      if (rules.indexOf('minlength') !== -1) {
         if (!checkMinLength(item)) {
           isFormValid = false;
         }
       }
 
-      if (rules.indexOf('maxlength') != -1) {
+      if (rules.indexOf('maxlength') !== -1) {
         if (!checkMaxLength(item)) {
           isFormValid = false;
         }
       }
 
-      if (rules.indexOf('letter') != -1) {
+      if (rules.indexOf('letter') !== -1) {
         if (!checkWord(item)) {
           isFormValid = false;
         }
       }
 
-      if (rules.indexOf('digits') != -1) {
+      if (rules.indexOf('digits') !== -1) {
         if (!checkDigits(item)) {
           isFormValid = false;
         }
       }
 
-      if (rules.indexOf('homeAddress') != -1) {
+      if (rules.indexOf('homeAddress') !== -1) {
         if (!checkHomeAddress(item)) {
           isFormValid = false;
         }
       }
 
-      if (rules.indexOf('email') != -1) {
+      if (rules.indexOf('email') !== -1) {
         if (!checkEmail(item)) {
           isFormValid = false;
         }
       }
 
-      if (rules.indexOf('password') != -1) {
+      if (rules.indexOf('password') !== -1) {
         if (!checkPassword(item)) {
           isFormValid = false;
         }
       }
 
-      if (rules.indexOf('phone') != -1) {
+      if (rules.indexOf('phone') !== -1) {
         if (!checkPhone(item)) {
           isFormValid = false;
         }
       }
 
-      if (rules.indexOf('creditCardNumber') != -1) {
+      if (rules.indexOf('creditCardNumber') !== -1) {
         if (!checkCreditCardNumber(item)) {
           isFormValid = false;
         }
       }
 
-      if (rules.indexOf('expiry') != -1) {
+      if (rules.indexOf('expiry') !== -1) {
         if (!checkExpiry(item)) {
           isFormValid = false;
         }
       }
 
-      if (rules.indexOf('confirm') != -1) {
+      if (rules.indexOf('confirm') !== -1) {
         if (!checkConfirmFields(item, currentForm)) {
           isFormValid = false;
         }
       }
-
     });
+
+    if (isFormValid) {        
+      ev = new CustomEvent("formIsValid");            
+      currentForm.dispatchEvent(ev);
+    } else {
+      ev = new CustomEvent("formIsNotValid");      
+      currentForm.dispatchEvent(ev);
+    }
+    hideLoader();
     return isFormValid;
   }
 };

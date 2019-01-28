@@ -32,7 +32,7 @@
         </div>
         <div class="form-block__group">
           <label for="form-phone" class="form-block__field-label">phone</label>
-          <input type="tel" class="form-block__field js-input" id="form-phone" name="Phone" required data-validation-rules="required minlength maxlength phone" minlength="10" maxlength="15"placeholder="0000000000">
+          <input type="tel" class="form-block__field js-input" id="form-phone" name="Phone" required data-validation-rules="required minlength maxlength phone" minlength="10" maxlength="15" placeholder="0000000000">
         </div>
       </fieldset>
       <fieldset class="form-block__wrapper">
@@ -62,7 +62,7 @@
       </fieldset>
       <fieldset class="form-block__wrapper">
         <legend class="form-block__legend-title">payment</legend>
-        <img src="https://img.icons8.com/metro/26/000000/shopping-cart.png" class="form-block__icon">
+        <img src="https://img.icons8.com/metro/26/000000/shopping-cart.png" class="form-block__icon" alt="shopIcon">
         <p class="form-block__tip">Do <span class="form-block__tip-bold">not</span> provide real credit card information in this field.</p>
         <div class="form-block__group">
           <label for="form-name-on-card" class="form-block__field-label">name on card</label>
@@ -73,11 +73,11 @@
           <input type="tel" name="cardNumber" class="form-block__field js-input js-credit-card-number" id="form-card-number" placeholder="0000 0000 0000 0000" required data-validation-rules="creditCardNumber required">
         </div>
         <div class="form-block__group">
-          <label or="form-cvc" class="form-block__field-label form-block__field-label--uppercase">cvc</label>
+          <label for="form-cvc" class="form-block__field-label form-block__field-label--uppercase">cvc</label>
           <input type="tel" name="cardNumber" class="form-block__field js-input" id="form-cvc" placeholder="0000" required data-validation-rules="required minlength maxlength digits" minlength="3" maxlength="4">
         </div>
         <div class="form-block__group">
-          <label or="form-expiry" class="form-block__field-label">expiry</label>
+          <label for="form-expiry" class="form-block__field-label">expiry</label>
           <input type="tel" name="expiry" class="form-block__field js-input js-expiry" id="form-expiry" placeholder="02/19" required data-validation-rules="required expiry">
         </div>
       </fieldset>
@@ -85,7 +85,6 @@
         <button type="reset" class="form-block__button-item form-button form-button--red">cancel</button>
         <input type="submit" class="form-block__button-item form-button" value="CHECK OUT">
       </div>
-    </div>
   </form>
   <div class="loader-wrapper">
     <div class="loader"></div>
