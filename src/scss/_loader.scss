@@ -46,13 +46,18 @@
 }
 
 @-webkit-keyframes animatebottom {
-  from { bottom:-100px; opacity:0 } 
-  to { bottom:0px; opacity:1 }
+  from { bottom:-100%; opacity:0 } 
+  to { top: 0; opacity:1 }
 }
 
 @keyframes animatebottom { 
-  from{ bottom:-100px; opacity:0 } 
-  to{ bottom:0; opacity:1 }
+  from{ bottom:-100%; opacity:0 } 
+  to{ top:0; opacity:1 }
+}
+
+.success-message {
+  display: none;
+  text-align: center;
 }
 
 .visible {
